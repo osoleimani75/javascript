@@ -47,14 +47,8 @@
     hanger.fill();
     hanger.closePath();    
 
-    happyHead();
-    neck();
-    rightHand();
-    leftHand();
-    bodyMan();
-    rightFeet();
-    leftFeet();
-function happyHead(){
+
+    function happyHead(){
     hhanger.beginPath();
     hhanger.lineWidth = 5;    
     hanger.strokeStyle='#555';
@@ -147,4 +141,36 @@ function leftFeet(){
     bhanger.lineTo(300,380);
     bhanger.stroke();
     bhanger.closePath();    
+}
+
+function hangman(num){
+    switch(num) {
+        case 6:
+            happyHead();
+          break;
+          case 5:
+            neck();
+            rightHand();
+          break;
+          case 4:
+            leftHand();
+          break;
+          case 3:
+            bodyMan();
+          break;
+          case 2:
+            rightFeet();
+          break;
+          case 1:
+              leftFeet();
+          break;
+          case 0:
+            hhanger.clearRect(200,73, 340, 350);
+            shanger.clearRect(200,98, 40, 84);
+
+            break;
+        default:{
+        }
+        // code block
+      }    
 }

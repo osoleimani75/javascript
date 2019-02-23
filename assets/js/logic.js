@@ -1,73 +1,177 @@
-gameWord = [{l:'k',v:0},
-          {l:'a',v:0},
-          {l:'n',v:0},
-          {l:'g',v:0},
-          {l:'r',v:0},
-          {l:'o',v:0},
-          {l:'o',v:0}];
 
-var live = 6, gameDone=0;
-var wrongLetters= "";
 
-function allLetter(inputletter)
+    var words;          // Array of words
+    var Category=0;       // Selected catagory
+    var word;           // selected word
+    var live=6;           // count of live
+    var winner=false;
+    var wrongLetters ="";
+    // ---- Get a word from data 
+    function fetchData (typeOfWord){
+        var dataWords = [];
+        dataWords[0] = ["Mammal", "Rabbit", "Rhinoceros", "Hippopotamus", "Kangaroo"
+                   ,"Cheetah", "Rhinoceros", "Greyhound", "Porcupine", "Tamarin"];
+        dataWords[1] = ["Diana Rose", "Laura Branigan", "David Bowie", "Elton John", "Lionel Richie"
+                   ,"Donna Summer", "Whitney Stone", "Kim Wilde" , "George Michael", "Mariah Carey"];
+
+         
+        var choosedWord = dataWords[typeOfWord][Math.floor(Math.random() * dataWords[typeOfWord].length)];
+        return choosedWord;
+        
+
+    }
+
+    // ---- check key for letter
+    function isLetter(inputletter)
       { 
-      var letters = /^[A-Za-z]+$/;
-      if(inputletter.match(letters))
-          return true;
-      else
-          return false;
+            var letters = /^[A-Za-z]+$/;
+            if(inputletter.match(letters))
+                return true;
+            else
+                return false;
       }
 
 
-function checkWord(key){
+    function compileWord(word){
+        var newword=[];
+        for(var i=0; i<word.length; i++)
+            newword[i] = {l:word[i].toLowerCase(),v:0};
+        return newword;
+    } 
 
-    if ((live>0) && allLetter(key)){
-        var check = false, winner =true;
-        for(var i=0; i<gameWord.length; i++)
-                if (gameWord[i].l ==key){            
-                    gameWord[i].v = 1;
-                    check = true;
-                }
-                if (!check){
-                    if (wrongLetters.indexOf(key)==-1){
-                        live -= 1;
-                        wrongLetters += key;
-                    }
-                    showWrongLetter(wrongLetters);
-                }
-                    
+    
+    //------ Show word letter
+    function showWordLetter(letter){
+        var list = document.getElementById("newWord");
+        while (list.hasChildNodes()) {   
+            list.removeChild(list.firstChild);
+          }
 
-                if (live<=0)
-                    winner = false;
-                else{
-                    for(var i=0; i<gameWord.length; i++)
-                        if (gameWord[i].v == 0){
-                            winner=false
-                            break;
-                        }
-                }
-            }
-    return winner;
-}
+        for(var i=0; i<letter.length; i++){
+            var iDiv = document.createElement("div");
+            iDiv.className="letterHolder";
+            var h1 = document.createElement("h1");
+            if (letter[i].v==1)
+                h1.textContent=letter[i].l;  
+            iDiv.appendChild(h1);
+            document.getElementById("newWord").appendChild(iDiv);  
+        }    
 
-function showWrongLetter(letter){
-    letters="wetcul"
-        for(var i=1; i<letters.length+1; i++){
-            document.getElementById("wrong").childNodes[1].childNodes[i].textContent=letters[i];
-            console.log(document.getElementById("wrong").childNodes[1].childNodes[6]);
-            console.log(letters);
-            console.log(i);
+    }
+    //------ Show wrong letter
+    function showWrongLetter(letter){
+
+        var list = document.getElementById("wrongLetters");
+        while (list.hasChildNodes()) {   
+            list.removeChild(list.firstChild);
+          }
+
+        for(var i=0; i< 6; i++){
+            var iDiv = document.createElement("div");
+            iDiv.className="letterHolder";
+            var h1 = document.createElement("h1");
+            h1.textContent=letter[i]  
+            iDiv.appendChild(h1);
+            document.getElementById("wrongLetters").appendChild(iDiv);  
+        }   
+    }
+
+    //------ reset game 
+    function resetGame(){
+        if ((live<=0)||(winner==true)){
+            winner = false;
+            live = 6;    
+        }
+        wrongLetters="";
+        hangman(0);
+        var list = document.getElementById("wrongLetters");
+        while (list.hasChildNodes()) {   
+            list.removeChild(list.firstChild);
+          }
+
+        for(var i=0; i< 6; i++){
+            var iDiv = document.createElement("div");
+            iDiv.className="letterHolder";
+            var h1 = document.createElement("h1");
+            iDiv.appendChild(h1);
+            document.getElementById("wrongLetters").appendChild(iDiv);  
+        }
+        var msg = document.getElementById("msgGreeting");
+        msg.textContent= "";
+
     }
 
 
+
+function message(num){
+    if (num==1){
+        var msg = document.getElementById("msgGreeting");
+            msg.textContent= "congratulations";
+            msg.className="msgCongras";
+            var audio = new Audio("sound/claps.mp3");
+            audio.play();
+                }
+    else {
+        var msg = document.getElementById("msgGreeting");
+            msg.textContent= "GameOver!";
+            msg.className="msgGameOver";
+                // ------------- play sound game over
+            var audio = new Audio("sound/gameover1.mp3");
+            audio.play();
+            
+    }
 }
-    test = document.getElementById("wrong").childNodes[7-live]
-document.onkeyup = function (event){
-    win= checkWord(event.key);
-  
-       if (win)
-        msgGreeting(1); 
-       else if ((win== false) && (live<= 0))
-        msgGreeting(2);
-}
+
+
+
+      // ---- Start Game 
+      function startGame(){
+            resetGame();
+            word = fetchData(Category);
+            var gameWord = compileWord(word);
+            showWordLetter(gameWord);
+            document.onkeyup = function(event){
+                var check=false;
+                var key = event.key; 
+
+
+                if ((live>0) && (isLetter(key)) && (winner == false)){
+                    for(var i=0; i<gameWord.length; i++)   // check letter in word
+                        if (gameWord[i].l == key){
+                            gameWord[i].v = 1;
+                            check= true;
+                            showWordLetter(gameWord);
+                        }
+                        
+                    if (!check){
+                        live -=1;
+                        wrongLetters += key;
+                        showWrongLetter(wrongLetters);
+                        hangman(live+1);
+                        if (live<=0) 
+                        {
+                            message(2);
+                            winner = false;
+                            return 0;
+                        } 
+                    } 
+                    j=0;
+                    for(var i=0; i<gameWord.length; i++)   // check letter in word
+                        if (gameWord[i].v == 1)
+                            j +=1;
+
+                    if (j== gameWord.length){
+                        message(1);
+                        winner= true;   
+                        return 0;
+                    }
+                    
+                }
+                
+
+            }
+        }
+
+      
+
 

@@ -5,48 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Canvas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style1.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 <body>
-        <div class="container">
-                <div class="row">
+    <div class="container">
+            <div class="row">
+                <div  class="col-sm-12 col-md-7 word-stage">
+                    <div id="newWord" class="row newWord">
 
-                        <!---------Word Stage -------->
-                        <div class="col-sm-8 word-stage">
-                                <div class="row"></div>
-                                <div class="row wrongLetters">
-                                        <div id="wrong" class="col-sm-12 ">
-                                                <div class="col-sm-12 ">
-                                                        <div id="wrong1" class="letterHolder"><h1></h1></div>
-                                                        <div id="wrong2" class="letterHolder"><h1></h1></div>
-                                                        <div id="wrong3" class="letterHolder"><h1></h1></div>
-                                                        <div id="wrong4" class="letterHolder"><h1></h1></div>
-                                                        <div id="wrong5" class="letterHolder"><h1></h1></div>
-                                                        <div id="wrong6" class="letterHolder"><h1></h1></div>        
-                                                </div>
-                    
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-sm-4 canvas"></div>
-                </div> 
-                <div class="row">
-                        <div class="col-sm-8 msgBox">
-                             <h1 id="msgGreeting"></h1>
-                        </div>
-                        <div class="col-sm-4 btnBox"></div>
+                    </div>
+                    <div class="row wrongLetters">
+                            <div id="wrongLetters" class="col-sm-12  ">
+                                    <div id="wrong1" class="letterHolder"><h1></h1></div>
+                                    <div id="wrong2" class="letterHolder"><h1></h1></div>
+                                    <div id="wrong3" class="letterHolder"><h1></h1></div>
+                                    <div id="wrong4" class="letterHolder"><h1></h1></div>
+                                    <div id="wrong5" class="letterHolder"><h1></h1></div>
+                                    <div id="wrong6" class="letterHolder"><h1></h1></div>        
+                            </div>
                 </div>
-        </div>
+                </div>
+                <div class="col-sm-12 col-md-5">
+                        <canvas id="canvas" class="float-right"></canvas>            
+                </div>
+            </div>    
+            <div class="row footerMsg">
+                    <div class="col-sm-12 col-md-8 text-center ">
+                        <h1 id="msgGreeting"> </h1>
+                    </div>
+                    <div class="col-sm-12 col-md-2 push-md-10 btn-word">
+                            <button id="start" onclick="startGame()" class="btn w-100">Start</button>
+                    </div>
+                    <div class="col-sm-12 col-md-2 push-md-10 btn-word">
+                            <button class="btn w-100">Animal Word</button>
+                            <button class="btn w-100">80's Singer</button>
+                    </div>
+            </div>            
+
+    </div>
 
 
 
     <script src="assets/js/hanger.js"></script>
-    <script src="assets/js/word.js"></script>
     <script src="assets/js/logic.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
-</body> 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 </html>
