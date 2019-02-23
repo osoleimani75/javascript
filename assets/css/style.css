@@ -1,0 +1,82 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    margin-top: 40px ;
+}
+canvas{
+    float: right;
+    width: 400px;
+    height: 500px;
+    border: 3px solid #000000;
+
+}
+
+.word-stage{
+    height: 500px;
+    border: 3px solid #555555 ;
+}
+.letterHolder{
+    width: 50px;
+    height: 50px;
+    margin: 30px 5px 5px;
+    float: left;
+    border-bottom: 3px solid #555555;
+    text-align: center;
+
+}
+.wrongLetters{
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    height: 80px;
+    margin: 15px auto !important;
+    border: 3px solid #555555;
+}
+.wrongLetters::before{
+    position: absolute;
+    content: "Wrong Letter";
+    color: crimson;
+    font-weight: bold;
+    font-size: 1.2em;
+    top: -30px
+}
+.wrongLetters .letterHolder{
+    margin:  10px !important ;
+    color: brown
+}
+.footerMsg{
+    height: 150px;
+    border: 3px solid #555555 ;
+    margin-top: 25px;
+
+}
+.footerMsg .msgCongras{
+    line-height: 140px;
+    font-size: 48px;
+    font-weight: bold;
+    color: coral;  
+}
+.footerMsg .msgGameOver{
+    line-height: 140px;
+    font-size: 48px;
+    font-weight: bold;
+    color: crimson;  
+}
+
+.btn-word{
+    padding: 17px 0 7px;
+}
+.btn-word button{
+    font-weight: bold;
+    font-size: 1.4em;
+    height: 50px;
+    margin-bottom:10px; 
+}
+#start {background-color: green;height: 110px;}
+.btn-word button:nth-child(1){background-color: goldenrod;}
+.btn-word button:nth-child(2){background-color: darkseagreen;}
+

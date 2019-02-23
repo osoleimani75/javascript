@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Stalinist+One');
+
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{margin-top: 40px ;}
+.row{margin-bottom: 15px;}
+
+
+.canvas, .word-stage, .msgBox, .btnBox{
+    border: 3px solid #555555;
+}
+
+.word-stage{
+    height: 500px;
+}
+.msgBox{
+    height: 150px;
+}
+#msgGreeting{
+    width: 100%;
+    height: 150px;
+    font-family: 'Stalinist One', cursive;
+    font-size: 3em;
+    font-weight: bold;
+    line-height: 140px;
+    text-align: center;
+}
+
+.letterHolder{
+    width: 50px;
+    height: 50px;
+    margin: 30px 5px 5px;
+    float: left;
+    border-bottom: 3px solid #555555;
+    font-size: 2em;
+    text-align: center;
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+
+}
+.wrongLetters{
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    height: 80px;
+    margin: 15px auto !important;
+    border: 3px solid #555555;
+}
+.wrongLetters::before{
+    position: absolute;
+    content: "Wrong Letter";
+    color: crimson;
+    font-weight: bold;
+    font-size: 1.2em;
+    top: -30px
+}
+.wrongLetters .letterHolder{
+    margin:  10px !important ;
+    color: rgb(46, 15, 182)
+}
